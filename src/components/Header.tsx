@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { Search, ShoppingBag, User as UserIcon, Heart } from "lucide-react";
+import { Search, ShoppingBag, User as UserIcon, Heart, Shield } from "lucide-react";
 import { useAuth } from "@/lib/auth";
 import { useCart } from "@/lib/cart";
 import { useWishlist } from "@/lib/wishlist";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 export function Header() {
   const { user, signOut } = useAuth();
@@ -11,6 +12,13 @@ export function Header() {
   const { count: wCount } = useWishlist();
   const nav = useNavigate();
   const [q, setQ] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    if (!user) { setIsAdmin(false); return; }
+    supabase.from("user_roles").select("role").eq("user_id", user.id).eq("role", "admin").maybeSingle()
+      .then(({ data }) => setIsAdmin(!!data));
+  }, [user?.id]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border glass">
@@ -55,6 +63,11 @@ export function Header() {
           </Link>
           {user ? (
             <div className="flex items-center gap-2">
+              {isAdmin && (
+                <Link to="/admin" className="p-2 hover:bg-surface rounded-lg transition text-primary" aria-label="Admin">
+                  <Shield className="size-5" />
+                </Link>
+              )}
               <Link to="/dashboard" className="p-2 hover:bg-surface rounded-lg transition" aria-label="Account">
                 <UserIcon className="size-5" />
               </Link>
