@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { AuthProvider } from "@/lib/auth";
 import { CartProvider } from "@/lib/cart";
+import { WishlistProvider } from "@/lib/wishlist";
 import { Toaster } from "sonner";
 import { Header } from "@/components/Header";
 
@@ -91,9 +92,11 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <CartProvider>
-          <Header />
-          <Outlet />
-          <Toaster theme="dark" position="bottom-right" />
+          <WishlistProvider>
+            <Header />
+            <Outlet />
+            <Toaster theme="dark" position="bottom-right" />
+          </WishlistProvider>
         </CartProvider>
       </AuthProvider>
     </QueryClientProvider>
