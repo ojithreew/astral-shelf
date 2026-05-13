@@ -4,6 +4,7 @@ import { fetchProductBySlug, fetchProducts } from "@/lib/products";
 import { useCart } from "@/lib/cart";
 import { useAuth } from "@/lib/auth";
 import { ProductCard } from "@/components/ProductCard";
+import { WishlistButton } from "@/components/WishlistButton";
 import { Star, Download, Check } from "lucide-react";
 
 export const Route = createFileRoute("/products/$slug")({
@@ -100,12 +101,15 @@ function ProductDetail() {
                 {inCart ? (<><Check className="size-4" /> In your cart</>) : "Add to cart"}
               </button>
 
-              <Link
-                to="/cart"
-                className="mt-3 block text-center w-full bg-surface border border-border rounded-xl py-3 text-sm font-medium hover:bg-surface-2 transition"
-              >
-                View cart
-              </Link>
+              <div className="mt-3 flex gap-2">
+                <Link
+                  to="/cart"
+                  className="flex-1 block text-center bg-surface border border-border rounded-xl py-3 text-sm font-medium hover:bg-surface-2 transition"
+                >
+                  View cart
+                </Link>
+                <WishlistButton productId={product.id} size="lg" className="!rounded-xl !size-auto px-4 border-border" />
+              </div>
             </div>
 
             <div className="border-t border-border pt-6 space-y-3 text-xs">

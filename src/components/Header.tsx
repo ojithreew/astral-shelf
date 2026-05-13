@@ -1,12 +1,14 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { Search, ShoppingBag, User as UserIcon } from "lucide-react";
+import { Search, ShoppingBag, User as UserIcon, Heart } from "lucide-react";
 import { useAuth } from "@/lib/auth";
 import { useCart } from "@/lib/cart";
+import { useWishlist } from "@/lib/wishlist";
 import { useState } from "react";
 
 export function Header() {
   const { user, signOut } = useAuth();
   const { count } = useCart();
+  const { count: wCount } = useWishlist();
   const nav = useNavigate();
   const [q, setQ] = useState("");
 
@@ -39,6 +41,12 @@ export function Header() {
         </form>
 
         <div className="flex items-center gap-3">
+          <Link to="/wishlist" className="relative p-2 hover:bg-surface rounded-lg transition" aria-label="Wishlist">
+            <Heart className="size-5" />
+            {wCount > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 bg-rose-500 text-white text-[10px] font-bold rounded-full size-4 flex items-center justify-center">{wCount}</span>
+            )}
+          </Link>
           <Link to="/cart" className="relative p-2 hover:bg-surface rounded-lg transition" aria-label="Cart">
             <ShoppingBag className="size-5" />
             {count > 0 && (

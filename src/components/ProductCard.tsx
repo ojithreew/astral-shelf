@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Star } from "lucide-react";
 import type { Product } from "@/lib/products";
+import { WishlistButton } from "@/components/WishlistButton";
 
 export function ProductCard({ p, large = false }: { p: Product; large?: boolean }) {
   const free = Number(p.price) === 0;
@@ -22,10 +23,11 @@ export function ProductCard({ p, large = false }: { p: Product; large?: boolean 
           <div className="w-full h-full bg-surface-2" />
         )}
         {p.software && (
-          <span className="absolute top-3 right-3 bg-background/80 backdrop-blur px-2 py-1 rounded-md text-[10px] font-mono border border-white/10 uppercase">
+          <span className="absolute top-3 left-3 bg-background/80 backdrop-blur px-2 py-1 rounded-md text-[10px] font-mono border border-white/10 uppercase">
             {p.software}
           </span>
         )}
+        <WishlistButton productId={p.id} size="sm" className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition" />
       </div>
       <div className="flex justify-between items-start gap-2">
         <div className="min-w-0">
