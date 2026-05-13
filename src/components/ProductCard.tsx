@@ -29,7 +29,6 @@ export function ProductCard({ p, large = false }: { p: Product; large?: boolean 
         )}
         <WishlistButton productId={p.id} size="sm" className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition" />
       </div>
-      </div>
       <div className="flex justify-between items-start gap-2">
         <div className="min-w-0">
           <h4 className="font-display text-sm font-bold group-hover:text-primary transition-colors truncate">{p.name}</h4>
