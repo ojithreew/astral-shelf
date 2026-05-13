@@ -52,7 +52,7 @@ function CategoriesAdmin() {
           </tbody>
         </table>
       </div>
-      {editing && <CategoryForm initial={editing} onClose={() => setEditing(null)} onSave={async (p) => {
+      {editing && <CategoryForm initial={editing} onClose={() => setEditing(null)} onSave={async (p: any) => {
         try { await upsert({ data: p }); toast.success("Saved"); setEditing(null); qc.invalidateQueries({ queryKey: ["admin-categories"] }); }
         catch (e: any) { toast.error(e.message); }
       }} />}

@@ -87,7 +87,7 @@ function ProductsAdmin() {
           initial={editing}
           categories={categories}
           onClose={() => setEditing(null)}
-          onSave={async (payload) => {
+          onSave={async (payload: any) => {
             try {
               await upsert({ data: payload });
               toast.success(payload.id ? "Updated" : "Created");
@@ -173,9 +173,9 @@ function ProductEditor({ initial, categories, onClose, onSave }: any) {
           </div>
           <Field label="Tags (comma-separated)"><input value={f.tags} onChange={(e) => setF({ ...f, tags: e.target.value })} className={input} placeholder="ui, dashboard, dark" /></Field>
           <div className="flex flex-wrap gap-4 pt-2">
-            <Toggle checked={f.is_published} onChange={(v) => setF({ ...f, is_published: v })} label="Published" />
-            <Toggle checked={f.is_featured} onChange={(v) => setF({ ...f, is_featured: v })} label="Featured" />
-            <Toggle checked={f.is_trending} onChange={(v) => setF({ ...f, is_trending: v })} label="Trending" />
+            <Toggle checked={f.is_published} onChange={(v: boolean) => setF({ ...f, is_published: v })} label="Published" />
+            <Toggle checked={f.is_featured} onChange={(v: boolean) => setF({ ...f, is_featured: v })} label="Featured" />
+            <Toggle checked={f.is_trending} onChange={(v: boolean) => setF({ ...f, is_trending: v })} label="Trending" />
           </div>
         </div>
         <div className="sticky bottom-0 bg-surface border-t border-border px-6 py-4 flex justify-end gap-3">
