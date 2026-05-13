@@ -113,22 +113,40 @@ export type Database = {
         Row: {
           created_at: string
           id: string
+          midtrans_order_id: string | null
+          paid_at: string | null
+          payment_method: string | null
+          payment_url: string | null
+          snap_token: string | null
           status: string
           total: number
+          updated_at: string
           user_id: string
         }
         Insert: {
           created_at?: string
           id?: string
+          midtrans_order_id?: string | null
+          paid_at?: string | null
+          payment_method?: string | null
+          payment_url?: string | null
+          snap_token?: string | null
           status?: string
           total?: number
+          updated_at?: string
           user_id: string
         }
         Update: {
           created_at?: string
           id?: string
+          midtrans_order_id?: string | null
+          paid_at?: string | null
+          payment_method?: string | null
+          payment_url?: string | null
+          snap_token?: string | null
           status?: string
           total?: number
+          updated_at?: string
           user_id?: string
         }
         Relationships: []
@@ -231,6 +249,24 @@ export type Database = {
           created_at?: string
           display_name?: string | null
           id?: string
+        }
+        Relationships: []
+      }
+      settings: {
+        Row: {
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value?: Json
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: Json
         }
         Relationships: []
       }
