@@ -110,13 +110,6 @@ function ProductDetail() {
                 </Link>
                 <WishlistButton productId={product.id} size="lg" className="!rounded-xl !size-auto px-4 border-border" />
               </div>
-
-              <Link
-                to="/cart"
-                className="mt-3 block text-center w-full bg-surface border border-border rounded-xl py-3 text-sm font-medium hover:bg-surface-2 transition"
-              >
-                View cart
-              </Link>
             </div>
 
             <div className="border-t border-border pt-6 space-y-3 text-xs">
