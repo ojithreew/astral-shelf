@@ -63,6 +63,11 @@ export function Header() {
           </Link>
           {user ? (
             <div className="flex items-center gap-2">
+              {isAdmin && (
+                <Link to="/admin" className="p-2 hover:bg-surface rounded-lg transition text-primary" aria-label="Admin">
+                  <Shield className="size-5" />
+                </Link>
+              )}
               <Link to="/dashboard" className="p-2 hover:bg-surface rounded-lg transition" aria-label="Account">
                 <UserIcon className="size-5" />
               </Link>
